@@ -1,9 +1,12 @@
-package com.quickblox.qbpeople;
+package com.quickblox.qbpeople.ui.activities;
 
+import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.quickblox.qbpeople.R;
 
 
 public class MainActivity extends ActionBarActivity {
