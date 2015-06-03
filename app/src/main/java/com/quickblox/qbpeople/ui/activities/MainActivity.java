@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -15,12 +16,15 @@ import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.quickblox.qbpeople.R;
+import com.quickblox.qbpeople.htmlparcer.HtmlParser;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private Drawer drawerResult;
+    private AccountHeader accountHeader;
+    private Drawer drawer;
+    private TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +32,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initToolBar();
-        createDrawer(toolbar);
+        createAccountHeader();
+        createDrawer(toolbar, accountHeader);
+
+        tv = (TextView) findViewById(R.id.textView);
+        tv.setText(new HtmlParser().getStingFomWeb());
     }
 
 
@@ -57,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (drawerResult != null && drawerResult.isDrawerOpen()){
-            drawerResult.closeDrawer();
+        if (drawer != null && drawer.isDrawerOpen()){
+            drawer.closeDrawer();
         } else {
             super.onBackPressed();
         }
@@ -71,47 +79,55 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void createDrawer(Toolbar toolbar) {
-
-        AccountHeader accountHeader = new AccountHeaderBuilder()
+    private void createAccountHeader(){
+        accountHeader = new AccountHeaderBuilder()
                 .withActivity(this)
-                .withHeaderBackground(R.drawable.quick_blox_transparent)
-                .withHeaderBackgroundScaleType(ImageView.ScaleType.FIT_CENTER)
+                .withHeaderBackground(R.drawable.green_blue_wallpaper)
+                .withHeaderBackgroundScaleType(ImageView.ScaleType.CENTER_CROP)
+                .withHeightDp(150)
                 .build();
+    }
 
-        drawerResult = new DrawerBuilder(this)
+    private void createDrawer(Toolbar toolbar, AccountHeader accountHeader) {
+
+        drawer = new DrawerBuilder(this)
                 .withToolbar(toolbar)
                 .withActionBarDrawerToggleAnimated(true)
                 .withAnimateDrawerItems(true)
                 .withDisplayBelowToolbar(true)
+//                .withTranslucentStatusBar(false)
+//                .withTranslucentActionBarCompatibility(true)
                 .withAccountHeader(accountHeader)
                 .addDrawerItems(
-                        new PrimaryDrawerItem()
-                                .withName(R.string.update)
-                                .withIcon(R.drawable.ic_sync_black_18dp)
-                                .withIdentifier(1),
-                        new DividerDrawerItem(),
-                        new PrimaryDrawerItem()
-                                .withName(R.string.go_to_website)
-                                .withIcon(R.drawable.ic_web_black_18dp)
-                                .withIdentifier(2),
-                        new DividerDrawerItem(),
-                        new PrimaryDrawerItem()
-                                .withName(R.string.in_social_networks)
-                                .withCheckable(false)
-                                .withIdentifier(3),
-                        new SecondaryDrawerItem()
-                                .withName(R.string.social_facebook)
-                                .withIcon(R.drawable.ic_facebook_box_grey600_18dp),
-                        new SecondaryDrawerItem()
-                                .withName(R.string.social_vk)
-                                .withIcon(R.drawable.ic_vk_grey600_18dp),
-                        new SecondaryDrawerItem()
-                                .withName(R.string.social_twitter)
-                                .withIcon(R.drawable.ic_twitter_grey600_18dp),
-                        new SecondaryDrawerItem()
-                                .withName(R.string.social_youtube)
-                                .withIcon(R.drawable.ic_youtube_play_grey600_18dp))
+                new PrimaryDrawerItem()
+                        .withName(R.string.update)
+                        .withIcon(R.drawable.ic_sync_black_18dp)
+                        .withIdentifier(1),
+                new DividerDrawerItem(),
+                new PrimaryDrawerItem()
+                        .withName(R.string.go_to_website)
+                        .withIcon(R.drawable.ic_web_black_18dp)
+                        .withIdentifier(2),
+                new DividerDrawerItem(),
+                new PrimaryDrawerItem()
+                        .withName(R.string.in_social_networks)
+                        .withIdentifier(3),
+                new SecondaryDrawerItem()
+                        .withName(R.string.social_facebook)
+                        .withIcon(R.drawable.ic_facebook_box_grey600_18dp),
+                new SecondaryDrawerItem()
+                        .withName(R.string.social_vk)
+                        .withIcon(R.drawable.ic_vk_grey600_18dp),
+                new SecondaryDrawerItem()
+                        .withName(R.string.social_twitter)
+                        .withIcon(R.drawable.ic_twitter_grey600_18dp),
+                new SecondaryDrawerItem()
+                        .withName(R.string.social_youtube)
+                        .withIcon(R.drawable.ic_youtube_play_grey600_18dp),
+                new DividerDrawerItem(),
+                new PrimaryDrawerItem()
+                        .withName(R.string.exit)
+                        .withIcon(R.drawable.ic_exit_to_app_black_18dp))
                 .build();
     }
 }

@@ -3,6 +3,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+
+    //Drawer items
     <string name="other_actions">Другие действия</string>
     <string name="update">Обновить</string>
     <string name="go_to_website">Посетить корпоративный сайт</string>
@@ -11,6 +14,7 @@
     <string name="social_vk">Vkontakte</string>
     <string name="social_twitter">Twitter</string>
     <string name="social_youtube">Youtube</string>
+    <string name="exit">Выход</string>
 
     <!---=====================Colors=====================-->
     <color name="green">#008000</color>
