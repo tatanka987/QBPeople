@@ -112,8 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 new PrimaryDrawerItem()
                         .withName(R.string.in_social_networks)
                         .withIdentifier(3)
-                        .withCheckable(false)
-                        .withEnabled(false),
+                        .withCheckable(false),
                 new SecondaryDrawerItem()
                         .withName(R.string.social_facebook)
                         .withIcon(R.drawable.ic_facebook_box_grey600_18dp),
