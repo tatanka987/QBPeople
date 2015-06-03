@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                         new DividerDrawerItem(),
                         new PrimaryDrawerItem()
                                 .withName(R.string.in_social_networks)
+                                .withCheckable(false)
                                 .withIdentifier(3),
                         new SecondaryDrawerItem()
                                 .withName(R.string.social_facebook)
