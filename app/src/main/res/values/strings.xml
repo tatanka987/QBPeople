@@ -9,7 +9,7 @@
     <string name="other_actions">Другие действия</string>
     <string name="update">Обновить</string>
     <string name="go_to_website">Посетить корпоративный сайт</string>
-    <string name="in_social_networks">Injoit в соц.сетях</string>
+    <string name="in_social_networks">Мы в социалках</string>
     <string name="social_facebook">Facebook</string>
     <string name="social_vk">Vkontakte</string>
     <string name="social_twitter">Twitter</string>
@@ -18,4 +18,13 @@
 
     <!---=====================Colors=====================-->
     <color name="green">#008000</color>
+
+
+    //Dialogs
+    <string name="press_once_again_to_exit">Нажми еще раз для выхода</string>
+    <string name="dialog_title">Вы уверены, что хотите выйти</string>
+    <string name="positive_response">Да</string>
+    <string name="negative_response">Нет</string>
+
+
 </resources>
