@@ -9,11 +9,20 @@
         android:id="@+id/toolbar"
         layout="@layout/tool_bar"/>
 
-    <TextView
-        android:id="@+id/textView"
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/toolbar">
+
+    </FrameLayout>
+
+
+    <!--<TextView-->
+        <!--android:id="@+id/textView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@+id/toolbar"-->
+        <!--android:layout_alignParentStart="true" />-->
 
 </RelativeLayout>

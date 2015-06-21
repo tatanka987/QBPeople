@@ -6,6 +6,7 @@ package com.quickblox.qbpeople.utils;
 public class Consts {
 
     // Web links
+    public static final String CURRENT_URL =        "https://sites.google.com/a/injoit.com/insite/employees_info";
     public static final String FACEBOOK_LINK =      "https://www.facebook.com/quickblox";
     public static final String VK_LINK =            "http://vk.com/club10652015";
     public static final String TWITTER_LINK =       "https://twitter.com/QuickBlox";

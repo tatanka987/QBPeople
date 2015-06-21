@@ -21,7 +21,7 @@
 
 
     //Dialogs
-    <string name="press_once_again_to_exit">Нажми еще раз для выхода</string>
+    <string name="press_once_again_to_exit">Нажмте НАЗАД еще раз для выхода</string>
     <string name="dialog_title">Вы уверены, что хотите выйти</string>
     <string name="positive_response">Да</string>
     <string name="negative_response">Нет</string>

@@ -1,5 +1,7 @@
 package com.quickblox.qbpeople.ui.activities;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -25,6 +27,7 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.quickblox.qbpeople.R;
 import com.quickblox.qbpeople.htmlparcer.HtmlParser;
+import com.quickblox.qbpeople.ui.fragments.AllPeopleFragment;
 import com.quickblox.qbpeople.utils.Consts;
 
 
@@ -45,13 +48,15 @@ public class MainActivity extends AppCompatActivity {
         createAccountHeader();
         createDrawer(toolbar, accountHeader);
 
-        tv = (TextView) findViewById(R.id.textView);
-        tv.setText(new HtmlParser().getStingFomWeb());
+//        initWebView ();
+
+//        tv = (TextView) findViewById(R.id.textView);
+//        tv.setText(new HtmlParser().getStingFomWeb());
     }
 
 
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -71,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @Override
     public void onBackPressed() {
@@ -120,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
                         switch (iDrawerItem.getIdentifier()) {
                             case Consts.UPDATE_ITEM_IDENTIFIER:
+                                initWebView();
 //                                Toast.makeText(MainActivity.this, "Pressed item with identifier " + iDrawerItem.getIdentifier(), Toast.LENGTH_LONG).show();
                                 break;
                             case Consts.CORPORATE_SITE_ITEM_IDENTIFIER:
@@ -239,6 +245,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
         quitDialog.show();
+    }
+
+    private void initWebView (){
+
+        AllPeopleFragment allPeopleFragment = new AllPeopleFragment();
+//        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.add(R.id.fragmentContainer, allPeopleFragment);
+        ft.commit();
     }
 
 }
