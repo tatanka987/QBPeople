@@ -1,6 +1,5 @@
 package com.quickblox.qbpeople.ui.activities;
 
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,8 +8,6 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -26,7 +23,6 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.quickblox.qbpeople.R;
-import com.quickblox.qbpeople.htmlparcer.HtmlParser;
 import com.quickblox.qbpeople.ui.fragments.AllPeopleFragment;
 import com.quickblox.qbpeople.utils.Consts;
 
