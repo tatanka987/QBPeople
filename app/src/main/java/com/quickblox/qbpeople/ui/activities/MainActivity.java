@@ -4,10 +4,13 @@ import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -23,11 +26,26 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.quickblox.qbpeople.R;
+import com.quickblox.qbpeople.models.Employe;
 import com.quickblox.qbpeople.ui.fragments.AllPeopleFragment;
 import com.quickblox.qbpeople.utils.Consts;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
+
+    private final String TAG = MainActivity.class.getSimpleName();
 
     private Toolbar toolbar;
     private AccountHeader accountHeader;
@@ -125,7 +143,8 @@ public class MainActivity extends AppCompatActivity {
 //                                Toast.makeText(MainActivity.this, "Pressed item with identifier " + iDrawerItem.getIdentifier(), Toast.LENGTH_LONG).show();
                                 break;
                             case Consts.CORPORATE_SITE_ITEM_IDENTIFIER:
-                                goToWeb(iDrawerItem.getIdentifier());
+                                parseHTMLTable();
+//                                goToWeb(iDrawerItem.getIdentifier());
 //                                Toast.makeText(MainActivity.this, "Pressed item with identifier " + iDrawerItem.getIdentifier(), Toast.LENGTH_LONG).show();
                                 break;
                             case Consts.FACEBOOK_ITEM_IDENTIFIER:
@@ -252,4 +271,53 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
     }
 
+    private void parseHTMLTable(){
+        new NewThread().execute();
+    }
+
+    public class NewThread extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... arg) {
+
+            Document document = null;
+
+            if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                Log.d(TAG, "SD-карта доступна: " + Environment.getExternalStorageState());
+                File sdPath = Environment.getExternalStorageDirectory();
+                sdPath = new File(sdPath.getAbsolutePath() + "/" + "QBPeople");
+
+                File sdFile = new File(sdPath, "employees.html");
+                try {
+                    document = Jsoup.parse(sdFile, null);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Elements fullDocument = document.getElementsByTag("tbody");
+                Elements tr = fullDocument.get(fullDocument.size() - 1).getElementsByTag("tr");
+
+                Log.d(TAG, "" + tr.size());
+
+                ArrayList<Employe> employesList = new ArrayList<>();
+
+                for (int i = 1; i < tr.size(); i++) {
+                    Element td = tr.get(i);
+                    Elements employeFields = td.getElementsByTag("td");
+
+                    Employe employe = new Employe();
+                    employe.setFullName(employeFields.get(0).text());
+                    employe.setPosition(employeFields.get(1).text());
+                    employe.setSkype(employeFields.get(2).text());
+                    employe.seteMail(employeFields.get(3).text());
+                    employe.setTelephone(employeFields.get(4).text());
+
+                    employesList.add(employe);
+                }
+                Log.d(TAG, employesList.size() + "");
+                Log.d(TAG, employesList.toString());
+            }
+            return null;
+        }
+    }
 }

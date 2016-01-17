@@ -6,7 +6,7 @@ package com.quickblox.qbpeople.utils;
 public class Consts {
 
     // Web links
-    public static final String CURRENT_URL =        "https://sites.google.com/a/injoit.com/insite/employees_info";
+    public static final String MAIN_URL =           "https://sites.google.com/a/injoit.com/insite/employees_info";
     public static final String FACEBOOK_LINK =      "https://www.facebook.com/quickblox";
     public static final String VK_LINK =            "http://vk.com/club10652015";
     public static final String TWITTER_LINK =       "https://twitter.com/QuickBlox";
@@ -21,8 +21,5 @@ public class Consts {
     public static final int TWITTER_ITEM_IDENTIFIER =           7;
     public static final int YOUTUBE_ITEM_IDENTIFIER =           8;
     public static final int EXIT_ITEM_IDENTIFIER =              0;
-
-
-
 
 }

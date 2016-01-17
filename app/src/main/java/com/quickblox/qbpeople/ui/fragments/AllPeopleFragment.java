@@ -28,7 +28,7 @@ public class AllPeopleFragment extends Fragment {
 
         WebView webView = (WebView) view.findViewById(R.id.webViewAllPeoples);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(Consts.CURRENT_URL);
+        webView.loadUrl(Consts.MAIN_URL);
 
         return view;
     }
