@@ -15,10 +15,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.accountswitcher.AccountHeader;
-import com.mikepenz.materialdrawer.accountswitcher.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
@@ -110,14 +110,14 @@ public class MainActivity extends AppCompatActivity {
         drawer = new DrawerBuilder(this)
                 .withToolbar(toolbar)
                 .withActionBarDrawerToggleAnimated(true)
-                .withAnimateDrawerItems(true)
-                .withDisplayBelowToolbar(true)
+//                .withAnimateDrawerItems(true)
+//                .withDisplayBelowToolbar(true)
 //                .withTranslucentStatusBar(false)
                 .withAccountHeader(accountHeader)
                 .addDrawerItems(initialiseDrawerItems())
-                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                /*.withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
-                    public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
+                    public boolean onItemClick(View view, int position, IDrawerItem iDrawerItem) {
                         switch (iDrawerItem.getIdentifier()) {
                             case Consts.UPDATE_ITEM_IDENTIFIER:
 //                                Toast.makeText(MainActivity.this, "Pressed item with identifier " + iDrawerItem.getIdentifier(), Toast.LENGTH_LONG).show();
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         return false;
                     }
-                })
+                })*/
                 .build();
     }
 
@@ -169,8 +169,8 @@ public class MainActivity extends AppCompatActivity {
                 new DividerDrawerItem(),
                 new PrimaryDrawerItem()
                         .withName(R.string.in_social_networks)
-                        .withCheckable(true)
-                        .withDisabledTextColor(R.color.md_black_1000),
+//                        .withCheckable(true)
+                        .withDisabledTextColor(getResources().getColor(R.color.md_black_1000)),
                 new SecondaryDrawerItem()
                         .withIdentifier(Consts.FACEBOOK_ITEM_IDENTIFIER)
                         .withName(R.string.social_facebook)
@@ -194,32 +194,32 @@ public class MainActivity extends AppCompatActivity {
                         .withIcon(R.drawable.ic_exit_to_app_black_24dp)};
     }
 
-    private void goToWeb(int itemIdentifier){
-        String uri = "";
-
-        switch (itemIdentifier){
-            case Consts.CORPORATE_SITE_ITEM_IDENTIFIER:
-                uri = Consts.CORPORATE_WEB_SITE;
-                break;
-            case Consts.FACEBOOK_ITEM_IDENTIFIER:
-                uri = Consts.FACEBOOK_LINK;
-                break;
-            case Consts.VK_ITEM_IDENTIFIER:
-                uri = Consts.VK_LINK;
-                break;
-            case Consts.TWITTER_ITEM_IDENTIFIER:
-                uri = Consts.TWITTER_LINK;
-                break;
-            case Consts.YOUTUBE_ITEM_IDENTIFIER:
-                uri = Consts.YOUTUBE_LINK;
-                break;
-            default:
-                break;
-        }
-
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-        startActivity(intent);
-    }
+//    private void goToWeb(long itemIdentifier){
+//        String uri = "";
+//
+//        switch (itemIdentifier){
+//            case Consts.CORPORATE_SITE_ITEM_IDENTIFIER:
+//                uri = Consts.CORPORATE_WEB_SITE;
+//                break;
+//            case Consts.FACEBOOK_ITEM_IDENTIFIER:
+//                uri = Consts.FACEBOOK_LINK;
+//                break;
+//            case Consts.VK_ITEM_IDENTIFIER:
+//                uri = Consts.VK_LINK;
+//                break;
+//            case Consts.TWITTER_ITEM_IDENTIFIER:
+//                uri = Consts.TWITTER_LINK;
+//                break;
+//            case Consts.YOUTUBE_ITEM_IDENTIFIER:
+//                uri = Consts.YOUTUBE_LINK;
+//                break;
+//            default:
+//                break;
+//        }
+//
+//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+//        startActivity(intent);
+//    }
 
     private void openQuitDialog() {
         AlertDialog.Builder quitDialog = new AlertDialog.Builder(this);
